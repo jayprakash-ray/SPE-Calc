@@ -1,16 +1,12 @@
-# stage 1 (Build image)
-
-# pulling base image
-FROM node:12 as node
-# Setting the remote DIR to /app
-WORKDIR /app
-# COPY the current folder
-COPY . .
-# run npm i (install all the dependencies)
+### STAGE 1: Build ###
+FROM node:12.7-alpine AS build
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
 RUN npm install
-# this will generate dist
-RUN npm run build --prod
-
-# stage 2 (Running the app (i.e for production))
-FROM nginx:alpine
-COPY --from=node /app/dist/mini-project /usr/share/nginx/html
+COPY . .
+RUN npm run build
+### STAGE 2: Run ###
+FROM nginx:1.17.1-alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /usr/src/app/dist/scientific-calculator-with-devops
+ /usr/share/nginx/html
