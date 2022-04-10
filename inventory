@@ -1,1 +1,1 @@
-server1 172.16.133.44 ansible_user=jay
+server1 172.16.133.43 ansible_user=jay
