@@ -12,7 +12,9 @@ export class AppComponent {
   operation: String = "";
   expOprn: boolean = false;
   performed: boolean = false;
+  subdisplay:String='';
   factorial(n: number): any {
+    
     if (n == 0 || n == 1)
       return 1;
     return this.factorial(n - 1) * n;
@@ -37,11 +39,13 @@ export class AppComponent {
     }
     this.expOprn = false;
     this.performed = true;
+    this.subdisplay="";
   }
 
   cancel() {
     this.value1 = 0;
     this.value2 = 0;
+    this.subdisplay="";
   }
 
   exp() {
@@ -50,6 +54,11 @@ export class AppComponent {
   }
 
   fact() {
+    if(!Number.isInteger(this.value1))
+      {
+        this.subdisplay="Invalid Number!"
+        return;
+      }
     this.value1 = this.factorial(this.value1);
     this.performed = true;
   }
