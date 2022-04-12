@@ -1,8 +1,27 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <div class="base">
+<div class="container row">
+  <div class="col-6">
+    <div class="container col" style="margin-top: 20%;">
+      <div class="row">  
+        <div class="col-4"><br></div>
+        <div class="col-4">
+          <img src="https://www.iiitb.ac.in/includefiles/userfiles/images/iiitb_logo.png" style="width:200px" alt="">
+        </div>
+        <div class="col-4"></div>
+      </div>
+      <div class="row" style="margin-top: 5%;">
+        <div class="col-3"></div>
+        <div class="col-8">
+          <p><b>CS-816 Software Production Engineering</b></p>
+          <i>Mini Project - Scientific Calculator</i>
+          <p>Submitted By : Jayprakash Ray (MT2021060)</p>
+        </div>
+        <div class="col-1"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="container">
+      <div class="base main">
         <div class="maindisplay">
           <div class="subdisplay">Scientific Calculator-SPE Mini Project</div>
           {{ value1 }}
@@ -14,21 +33,21 @@
               <td class="keys opkey" colspan="1" (click)="root()">√x</td>
             </tr>
             <tr>
-              <td class="keys numkey" (click)="pressKey(7)">7</td>  
+              <td class="keys numkey" (click)="pressKey(7)">7</td>
               <td class="keys numkey" (click)="pressKey(8)">8</td>
-              <td class="keys numkey" (click)="pressKey(9)">9</td>  
+              <td class="keys numkey" (click)="pressKey(9)">9</td>
               <td class="keys opkey" (click)="fact()">x!</td>
             </tr>
             <tr>
-              <td class="keys numkey" (click)="pressKey(4)">4</td>  
+              <td class="keys numkey" (click)="pressKey(4)">4</td>
               <td class="keys numkey" (click)="pressKey(5)">5</td>
-              <td class="keys numkey" (click)="pressKey(6)">6</td>  
+              <td class="keys numkey" (click)="pressKey(6)">6</td>
               <td class="keys opkey" (click)="ln()">ln</td>
             </tr>
             <tr>
-              <td class="keys numkey" (click)="pressKey(3)">3</td>  
+              <td class="keys numkey" (click)="pressKey(3)">3</td>
               <td class="keys numkey" (click)="pressKey(2)">2</td>
-              <td class="keys numkey" (click)="pressKey(1)">1</td>  
+              <td class="keys numkey" (click)="pressKey(1)">1</td>
               <td class="keys opkey" (click)="exp()">^</td>
             </tr>
             <tr>
@@ -40,6 +59,5 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4"></div>
   </div>
 </div>

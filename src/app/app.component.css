@@ -40,6 +40,7 @@
 
 .keys:hover {
   opacity: 1;
+  color: green;
 }
 
 .ackey {
@@ -60,4 +61,8 @@
 .opkey {
   color: white;
   background-color: black; 
+}
+
+.main:hover{
+  box-shadow: 2px 2px 10px black;
 }
