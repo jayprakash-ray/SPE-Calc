@@ -7,96 +7,63 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-calculator-app';
-  subDisplayText = '';
-  mainDisplayText = '';
-  operand1: number; 
-  operand2: number; 
-  operator = ''; 
-  calculationString = '';
-  // This string  denotes the operation being performed
-  answered = false;
-  //  flag to check whether the solution has been processed
-  operatorSet = false; 
-  ansondisplay= false;
-   
-  fact(n: number): number{
-    if(n==1||n==0)
+  value1: number = 0;
+  value2: number = 0;
+  operation: String = "";
+  expOprn: boolean = false;
+  performed: boolean = false;
+  factorial(n: number): any {
+    if (n == 0 || n == 1)
       return 1;
-    else
-      return n*this.fact(n-1);
+    return this.factorial(n - 1) * n;
   }
-  pressKey(key: string) {
-   if(this.answered)
-   {
-    this.mainDisplayText=key;
-    this.answered=false;
-    return;
-   }
-   
-    if (key === '√' || key === 'ln' || key === '^' || key === '!') {
-      
-      const lastKey = this.mainDisplayText[this.mainDisplayText.length - 1];
-      if (lastKey === '^' || lastKey === '!') {
-        this.operatorSet = true;
-      }
-      if (lastKey === '√' || lastKey === 'ln') {
-        const lastKey = this.mainDisplayText[this.mainDisplayText.length - 1];
-        if (lastKey === '√' || lastKey === 'ln') {
-          this.operatorSet = true;
-        }
-      }
-     /* if ( (this.mainDisplayText === '')) {
-        return;
-      }*/
-      this.operand1 = parseFloat(this.mainDisplayText);
-      this.operator = key;
-      this.operatorSet = true;
-    }
-    if (this.mainDisplayText.length === 10) {
+  pressKey(x: number) {
+    if(this.performed){
+      this.value1 = x;
+      this.performed = false;
       return;
     }
-    this.mainDisplayText += key;
-  }
-  allClear() {
-    this.mainDisplayText = '';
-    this.subDisplayText = '';
-    this.operatorSet = false;
-  }
-  getAnswer() {
-    if(!this.operatorSet)
-        return;
-    this.calculationString = this.mainDisplayText;
-      {this.operand2 = parseFloat(this.mainDisplayText.split(this.operator)[1]);}
-    if (this.operator === '^') {
-      //this.subDisplayText = this.mainDisplayText;
-      this.mainDisplayText = Math.pow(this.operand1, this.operand2).toString();
-      //this.subDisplayText = this.calculationString;
-      if (this.mainDisplayText.length > 9) {
-        this.mainDisplayText = this.mainDisplayText.substr(0, 9);
-      }
-    } else if (this.operator === '!') {
-     //this.subDisplayText = this.mainDisplayText;
-      this.mainDisplayText = this.fact(this.operand1).toString();
-      //this.subDisplayText = this.calculationString;
-      if (this.mainDisplayText.length > 30) {
-        this.mainDisplayText = 'Infinity';
-        //this.subDisplayText = 'Range Exceeded';
-      }
-    } else if (this.operator === 'ln') {
-     // this.subDisplayText = this.mainDisplayText;
-      this.mainDisplayText = Math.log(this.operand2).toString();
-     // this.subDisplayText = this.calculationString;
-    } else if (this.operator === '√') {
-     // this.subDisplayText = this.mainDisplayText;
-      this.mainDisplayText = Math.sqrt(this.operand2).toString();
-     // this.subDisplayText = this.calculationString;
-      if (this.mainDisplayText.length > 20) {
-        this.mainDisplayText = 'Infinity';
-       // this.subDisplayText = 'Range Exceeded';
-      }
-    } else {
-      this.mainDisplayText = ' ERROR: Invalid Operation';
+    if (this.expOprn) {
+      this.value1 = 0;
     }
-    this.answered = true;
+    this.value1 = (this.value1 * 10) + x;
   }
-}
+
+  calculate() {
+    if (this.expOprn) {
+      this.value1 = Math.pow(this.value2, this.value1);
+    } else {
+      this.value1 = 0;
+    }
+    this.expOprn = false;
+    this.performed = true;
+  }
+
+  cancel() {
+    this.value1 = 0;
+    this.value2 = 0;
+  }
+
+  exp() {
+    this.value2 = this.value1
+    this.expOprn = true;
+  }
+
+  fact() {
+    this.value1 = this.factorial(this.value1);
+    this.performed = true;
+  }
+
+ 
+
+  root() {
+    this.value1 = Math.sqrt(this.value1);
+    this.performed = true;
+  }
+
+  ln() {
+    this.value1 = Math.log(this.value1);
+    this.performed = true;
+  }
+  }
+
