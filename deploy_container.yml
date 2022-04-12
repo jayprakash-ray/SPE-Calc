@@ -5,14 +5,14 @@
     ansible_python_interpreter: /usr/bin/python3
   tasks:
 
-#     - name: Stop Docker Container
-#       shell: docker stop scientificcalcdevops
+    - name: Stop Docker Container
+      shell: docker stop scientificcalcdevops
         
-#     - name: Remove Docker Container
-#       shell: docker rm -f scientificcalcdevops
+    - name: Remove Docker Container
+      shell: docker rm -f scientificcalcdevops
         
-#     - name: Remove Docker Image
-#       shell: docker image rm -f jpray/scientificcalcdevops:latest
+    - name: Remove Docker Image
+      shell: docker image rm -f jpray/scientificcalcdevops:latest
         
     - name: Pull calculator devops image
       docker_image:
