@@ -17,6 +17,7 @@ export class AppComponent {
   answered = false;
   //  flag to check whether the solution has been processed
   operatorSet = false; 
+  ansondisplay= false;
    
   fact(n: number): number{
     if(n==1||n==0)
@@ -25,9 +26,15 @@ export class AppComponent {
       return n*this.fact(n-1);
   }
   pressKey(key: string) {
-  
+   if(this.answered)
+   {
+    this.mainDisplayText=key;
+    this.answered=false;
+    return;
+   }
+   
     if (key === '√' || key === 'ln' || key === '^' || key === '!') {
-      console.log(this.mainDisplayText);
+      
       const lastKey = this.mainDisplayText[this.mainDisplayText.length - 1];
       if (lastKey === '^' || lastKey === '!') {
         this.operatorSet = true;
@@ -56,6 +63,8 @@ export class AppComponent {
     this.operatorSet = false;
   }
   getAnswer() {
+    if(!this.operatorSet)
+        return;
     this.calculationString = this.mainDisplayText;
       {this.operand2 = parseFloat(this.mainDisplayText.split(this.operator)[1]);}
     if (this.operator === '^') {
@@ -86,7 +95,7 @@ export class AppComponent {
        // this.subDisplayText = 'Range Exceeded';
       }
     } else {
-      this.subDisplayText = 'ERROR: Invalid Operation';
+      this.mainDisplayText = ' ERROR: Invalid Operation';
     }
     this.answered = true;
   }
